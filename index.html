@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Support Ticket for Justin</title>
+<style>
+:root{--bg:#f6f3ee;--card:#fff;--ink:#1c1b22;--mut:#6b6877;--acc:#e8553d;--acc2:#7c4dff;--bd:#e4e0d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15141b;--card:#1f1e28;--ink:#f3f1f8;--mut:#a29fb0;--bd:#33313f}}
+:root[data-theme="dark"]{--bg:#15141b;--card:#1f1e28;--ink:#f3f1f8;--mut:#a29fb0;--bd:#33313f}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;max-width:480px;width:100%;padding:28px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+.tag{font:600 12px ui-monospace,Menlo,monospace;color:var(--acc);letter-spacing:.08em}
+h1{font-size:24px;margin:10px 0 6px}
+p{color:var(--mut);line-height:1.5;margin:8px 0 18px}
+button{display:block;width:100%;margin:10px 0;padding:14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--ink);font-size:16px;cursor:pointer;transition:.15s}
+button:hover{border-color:var(--acc);transform:translateY(-1px)}
+.big{font-size:38px;font-weight:800;line-height:1.1;margin:8px 0;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.emoji{font-size:56px}
+canvas{position:fixed;inset:0;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="card" id="reveal">
+  <div class="emoji">🎂</div>
+  <div class="big">HAPPY BIRTHDAY, JUSTIN!</div>
+  <p>Wishing you a fantastic day full of cake, celebration and zero escalations. 🎉<br><br>Thanks for being a great manager. Enjoy your day!</p>
+  <div class="tag">— YOUR SUPPORT TEAM</div>
+</div>
+<script>
+window.onload=boom;
+function boom(){
+  var c=document.getElementById('c'),x=c.getContext('2d');
+  c.width=innerWidth;c.height=innerHeight;
+  var cols=['#e8553d','#7c4dff','#ffc107','#26a69a','#42a5f5','#ec407a'];
+  var ps=[];
+  for(var i=0;i<160;i++)ps.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.5,vx:Math.random()*2-1,vy:2+Math.random()*3,s:5+Math.random()*6,r:Math.random()*6,vr:Math.random()*.2-.1,c:cols[i%cols.length]});
+  var t=0;
+  (function f(){
+    x.clearRect(0,0,c.width,c.height);
+    ps.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});
+    if(++t<400)requestAnimationFrame(f);else x.clearRect(0,0,c.width,c.height);
+  })();
+}
+</script>
+</body>
+</html>
